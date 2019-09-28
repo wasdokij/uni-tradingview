@@ -37,18 +37,19 @@ marketDom.addEventListener('click', function (e) {
   // 5是 5分钟数据
 	console.log(e.target.innerHTML)
   widget.setSymbol(e.target.innerHTML, 5)
-
+	// 切回平均K线
+	widget.chart().setChartType(1)
   // 这个函数不用看，我为了样式好看 写一个添加删除class
   addClass(marketDom, e.target)
-
 	addClass(intervalDom, intervalDom.children[1])
+	
 }, false)
 
 // 切换产品周期
 intervalDom.addEventListener('click', function (e) {
   // e.target.dataset.value 这个就是获取的产品的周期
 	console.log(e.target.dataset.value)
-	// 3 为平均K线； 1 为面积图
+	// 1 为平均K线； 3 为面积图
 	widget.chart().setChartType(e.target.dataset.value == '1' ? 3 : 1)
   widget.chart().setResolution(e.target.dataset.value)
   // 这个函数不用看，我为了样式好看 写一个添加删除class
