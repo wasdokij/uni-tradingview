@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>行情</title>
-  <!-- Fix for iOS Safari zooming bug -->
-  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-  <meta charset="utf-8" />
-  
-  <!--封装了一个发布订阅模式-->
-  <script src="./event.js"></script>
-  <!--图表库js-->
-  <script src="./charting_library/charting_library.min.js"></script>
-  <!--websocket-->
-  <script src="./websocket.js"></script>
-  <!--图表数据获取-->
-  <script src="./datafeed.js"></script>
-  <!--图表配置-->
-  <script src="./chartConfig.js"></script>
-</head>
-<style>
-  * {
+	<head>
+		<meta charset="UTF-8">
+		<title>行情</title>
+		<!-- Fix for iOS Safari zooming bug -->
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta charset="utf-8" />
+
+		<!--封装了一个发布订阅模式-->
+		<script src="./event.js"></script>
+		<!--图表库js-->
+		<script src="./charting_library/charting_library.min.js"></script>
+		<!--websocket-->
+		<script src="./websocket.js"></script>
+		<!--图表数据获取-->
+		<script src="./datafeed.js"></script>
+		<!--图表配置-->
+		<script src="./chartConfig.js"></script>
+	</head>
+	<style>
+		* {
   	padding: 0;
   	margin: 0;
   }
@@ -92,10 +92,17 @@
 			background-color: #157fd5;
 			border-radius: 3px;
 		}
-
-
-
-
+	
+/* 	#tv_chart_container:before {
+		content: " ";
+		position: fixed;
+		bottom: 22%;
+		left: 5%;
+		z-index: 999;
+		width: 9vw;
+		height: 9vw;
+		background-color: #fff;
+	} */
   /* 这个下面的css重点关注，和k线图与关 */
 
   #tv_chart_container {
@@ -112,31 +119,48 @@
 	    padding-right: 5px;
 	}
 </style>
-<body>
-  <div class="root">
-		<div class="header">
-			<div id="symbol" class="symbol">
-			  <span class="active">BTC/USDT</span>
-			  <span>ETH/USDT</span>
-			  <span>BCH/USDT</span>
-			  <span>EOS/USDT</span>
-			  <span>ETC/USDT</span>
+	<body>
+		<div class="root">
+			<div class="header">
+				<div id="symbol" class="symbol">
+					<span class="active">BTC/USDT</span>
+					<span>ETH/USDT</span>
+					<span>BCH/USDT</span>
+					<span>EOS/USDT</span>
+					<span>ETC/USDT</span>
+				</div>
+				<div class="times" id="interval">
+					<span data-value="1">分时</span>
+					<span class="active" data-value="5">5分钟</span>
+					<!-- <span data-value="15">15分钟</span> -->
+					<span data-value="30">30分钟</span>
+					<span data-value="60">1小时</span>
+					<span data-value="240">4小时</span>
+					<span data-value="1440">日线</span>
+				</div>
 			</div>
-			<div class="times" id="interval">
-			  <span  data-value="1">分时</span>
-			  <span class="active" data-value="5">5分钟</span>
-			  <!-- <span data-value="15">15分钟</span> -->
-			  <span data-value="30">30分钟</span>
-			  <span data-value="60">1小时</span>
-			  <span data-value="240">4小时</span>
-			  <span data-value="1440">日线</span>
+			<div class="chart">
+				<div id="tv_chart_container"></div>
 			</div>
 		</div>
-    <div class="chart">
-      <div id="tv_chart_container"></div>
-    </div>
-  </div>
-  <!--页面总统js 初始化图表库 绑定点击事件等-->
-  <script src="./index.js"></script>
-</body>
+		<!-- 拦截点击logo跳转 -->
+		<script type="text/javascript">
+			function plusReady() {
+				var ws = plus.webview.currentWebview();
+				console.log("当前Webview窗口：" + ws.getURL());
+				ws.overrideUrlLoading({
+					mode: 'reject'
+				}, function(e) {
+					console.log('拦截跳转 url: ' + e.url);
+				})
+			}
+			if (window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+		<!--页面总统js 初始化图表库 绑定点击事件等-->
+		<script src="./index.js"></script>
+	</body>
 </html>

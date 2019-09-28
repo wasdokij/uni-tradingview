@@ -48,13 +48,14 @@ var chartConfig = {
 	custom_css_url: "./css/tradingview.css",
 	studies_overrides: {
 		"volume.precision": 0,
-		"volume.volume.color.0": "#fd8b8b",
-		"volume.volume.color.1": "#3cb595",
+		// 销量线
+		"volume.volume.color.0": "#d64b62",
+		"volume.volume.color.1": "#08ab90",
 	},
 	overrides: {
 		// 蜡烛样式
-		// "mainSeriesProperties.candleStyle.upColor": "#48b451",
-		// "mainSeriesProperties.candleStyle.downColor": "#db000c",
+		"mainSeriesProperties.candleStyle.upColor": "#08ab90",
+		"mainSeriesProperties.candleStyle.downColor": "#d64b62",
 		// 画布背景颜色
 		"paneProperties.background": "#181B2A",
 		//纵向网格线颜色
@@ -72,6 +73,10 @@ var chartConfig = {
 		'left_toolbar': false,
 		//销量面板尺寸，支持的值: large, medium, small, tiny
 		"volumePaneSize": "medium",
+		// 设置十字线
+		'paneProperties.crossHairProperties.color': "#c5cee26b",
+		'paneProperties.crossHairProperties.width': 15,
+		'paneProperties.crossHairProperties.style': 0,
 
 		//烛心
 		// "mainSeriesProperties.candleStyle.drawWick" : true,
