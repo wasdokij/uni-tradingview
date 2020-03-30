@@ -1,7 +1,7 @@
 // 图表库实例化后储存的函数
 var widget = null 
 // 进入页面 默认展示的产品
-var index_market = 'BTC/USDT'
+var index_market = 'btcusdt'
 // 进入页面 默认展示的产品周期
 var index_activeCycle = 5
 
@@ -33,10 +33,9 @@ var intervalDom = document.getElementById('interval')
 
 // 切换产品
 marketDom.addEventListener('click', function (e) {
-  // e.target.innerHTML 就是我们拿到的产品
+  // e.target.dataset.value 就是我们拿到的产品
   // 5是 5分钟数据
-	console.log(e.target.innerHTML)
-  widget.setSymbol(e.target.innerHTML, 5)
+  widget.setSymbol(e.target.dataset.value, 5)
 	// 切回平均K线
 	widget.chart().setChartType(1)
   // 这个函数不用看，我为了样式好看 写一个添加删除class

@@ -6,7 +6,8 @@
 		<!-- Fix for iOS Safari zooming bug -->
 		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
 		<meta charset="utf-8" />
-
+		
+		<script src="./pako.js"></script>
 		<!--封装了一个发布订阅模式-->
 		<script src="./event.js"></script>
 		<!--图表库js-->
@@ -123,11 +124,11 @@
 		<div class="root">
 			<div class="header">
 				<div id="symbol" class="symbol">
-					<span class="active">BTC/USDT</span>
-					<span>ETH/USDT</span>
-					<span>BCH/USDT</span>
-					<span>EOS/USDT</span>
-					<span>ETC/USDT</span>
+					<span class="active" data-value="btcusdt">BTC/USDT</span>
+					<span data-value="ethusdt">ETH/USDT</span>
+					<span data-value="bchusdt">BCH/USDT</span>
+					<span data-value="eosusdt">EOS/USDT</span>
+					<span data-value="etcusdt">ETC/USDT</span>
 				</div>
 				<div class="times" id="interval">
 					<span data-value="1">分时</span>
@@ -136,31 +137,27 @@
 					<span data-value="30">30分钟</span>
 					<span data-value="60">1小时</span>
 					<span data-value="240">4小时</span>
-					<span data-value="1440">日线</span>
+					<span data-value="1D">日线</span>
 				</div>
 			</div>
 			<div class="chart">
 				<div id="tv_chart_container"></div>
 			</div>
 		</div>
+		
+		<!--页面总统js 初始化图表库 绑定点击事件等-->
+		<script src="./index.js"></script>
 		<!-- 拦截点击logo跳转 -->
 		<script type="text/javascript">
 			function plusReady() {
 				var ws = plus.webview.currentWebview();
-				console.log("当前Webview窗口：" + ws.getURL());
 				ws.overrideUrlLoading({
 					mode: 'reject'
 				}, function(e) {
 					console.log('拦截跳转 url: ' + e.url);
 				})
-			}
-			if (window.plus) {
-				plusReady();
-			} else {
+				}
 				document.addEventListener('plusready', plusReady, false);
-			}
 		</script>
-		<!--页面总统js 初始化图表库 绑定点击事件等-->
-		<script src="./index.js"></script>
 	</body>
 </html>

@@ -74,8 +74,8 @@ var chartConfig = {
 		//销量面板尺寸，支持的值: large, medium, small, tiny
 		"volumePaneSize": "medium",
 		// 设置十字线
-		'paneProperties.crossHairProperties.color': "#c5cee26b",
-		'paneProperties.crossHairProperties.width': 15,
+		'paneProperties.crossHairProperties.color': "rgba(197, 206, 226, 0.4)",
+		'paneProperties.crossHairProperties.width': 10,
 		'paneProperties.crossHairProperties.style': 0,
 
 		//烛心
